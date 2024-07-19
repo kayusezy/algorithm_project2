@@ -1,34 +1,27 @@
-Algorithm: Insertion Sort
+function insertionSort(arr) {
+    const length = arr.length;
+    
+    for (let i = 1; i < length; i++) {
+        let current = arr[i];  // Current element to be inserted
+        let j = i - 1;  // Start comparing with the previous element
+        
+        // Move elements of arr[0..i-1], that are greater than current,
+        // to one position ahead of their current position
+        while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        
+        // Place current element at its correct position in sorted array
+        arr[j + 1] = current;
+    }
+    
+    return arr;
+}
 
-Purpose:
-    Sort an array of integers in ascending order using the Insertion Sort algorithm.
+// Example usage:
+let arr = [5, 2, 4, 6, 1, 3];
+console.log("Original Array:", arr);
 
-Input:
-    - arr: An array of integers to be sorted.
-
-Output:
-    - arr: The sorted array of integers.
-
-Steps:
-1. Start with the second element (index 1) in the array.
-2. Iterate through the array:
-    a. Set current element as arr[i].
-    b. Initialize j to i-1.
-    c. While j >= 0 and arr[j] > current:
-        - Shift arr[j] one position to the right (arr[j + 1] = arr[j]).
-        - Decrement j.
-    d. Place current element in the correct position (arr[j + 1] = current).
-3. Repeat steps 2 until the entire array is sorted.
-4. Return the sorted array arr.
-
-Example:
-    Input: [5, 2, 4, 6, 1, 3]
-    Output: [1, 2, 3, 4, 5, 6]
-
-Complexity:
-    - Time Complexity: O(n^2) in worst case.
-    - Space Complexity: O(1) additional space.
-
-Notes:
-    - Insertion Sort is efficient for small datasets or nearly sorted datasets.
-    - It operates in-place, making it suitable for scenarios where memory is limited.
+let sortedArray = insertionSort(arr);
+console.log("Sorted Array:", sortedArray);
